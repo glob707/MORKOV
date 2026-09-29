@@ -1,0 +1,34 @@
+{
+  "name": "markvi",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Dynamic stereo panning of voice chat participants for BetterDiscord",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "markvi": {
+    "author": "MARKVI contributors",
+    "githubRepo": "glob707/MORKOV"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check:bundle": "node scripts/check-bundle.mjs",
+    "deploy": "npm run build && node scripts/deploy.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "ci": "npm run typecheck && npm run lint && npm run test && npm run build && npm run check:bundle"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.11.0",
+    "globals": "^17.12.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.0",
+    "vitest": "^5.0.2"
+  }
+}
