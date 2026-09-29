@@ -241,6 +241,7 @@ engine.handle(event: EngineEvent, nowMs: number): {
 | API | Где найден | Назначение |
 |---|---|---|
 | `setLocalPan(userId, left, right)` | `discord_voice/index.js` (app-0.0.413), флаг `voice_panning` | Панорама |
+| `setLocalVolume(userId, volume)`, `setLocalMute(userId, mute)`, `setUserPosition(userId, position)` | `discord_voice/index.js` (app-0.0.413) | Громкость, заглушение, позиция для встроенного Spatial Audio. Обёрнуты вместе с `setLocalPan` в `src/voice.ts`; шкала `volume` и форма `position` не подтверждены |
 | Flux `SPEAKING` / SpeakingStore | Клиент Discord, используется плагином VoiceBalancer | Кто говорит |
 | VoiceState store | Клиент Discord | Участники канала, свой канал |
 | `BdApi.Data`, `BdApi.ContextMenu`, `BdApi.Webpack`, `BdApi.Patcher`, `BdApi.UI` | BetterDiscord | Хранилище, UI, поиск модулей, перехват, уведомления |
