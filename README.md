@@ -1,4 +1,4 @@
-# MARKVI
+# MORKOV
 
 Плагин [BetterDiscord](https://betterdiscord.app), который раскладывает голоса участников звонка по стереопанораме. Когда в большой компании говорят несколько человек сразу, голоса не сливаются в кашу: кто-то слышен слева, кто-то справа.
 
@@ -16,8 +16,8 @@
 ## Установка
 
 1. Установите BetterDiscord.
-2. Скачайте `MARKVI.plugin.js` и положите в папку плагинов (Настройки → BetterDiscord → Плагины → «Открыть папку плагинов»).
-3. Включите MARKVI в списке плагинов.
+2. Скачайте `MORKOV.plugin.js` и положите в папку плагинов (Настройки → BetterDiscord → Плагины → «Открыть папку плагинов»).
+3. Включите MORKOV в списке плагинов.
 
 ## Разработка
 
@@ -25,13 +25,13 @@
 
 ```sh
 npm install
-npm run build        # собрать dist/MARKVI.plugin.js
+npm run build        # собрать dist/MORKOV.plugin.js
 npm run deploy       # собрать и скопировать в папку плагинов BetterDiscord
 npm test             # юнит-тесты
 npm run ci           # всё, что проверяет CI: типы, линтер, тесты, сборка, проверка бандла
 ```
 
-Логи плагина — в консоли Discord (Cmd+Option+I на macOS, Ctrl+Shift+I на Windows) с префиксом `[MARKVI]`.
+Логи плагина — в консоли Discord (Cmd+Option+I на macOS, Ctrl+Shift+I на Windows) с префиксом `[MORKOV]`.
 
 ## Лицензия
 

@@ -1,5 +1,5 @@
 {
-  "name": "markvi",
+  "name": "morkov",
   "version": "0.0.1",
   "private": true,
   "description": "Dynamic stereo panning of voice chat participants for BetterDiscord",
@@ -8,8 +8,8 @@
   "engines": {
     "node": ">=22"
   },
-  "markvi": {
-    "author": "MARKVI contributors",
+  "morkov": {
+    "author": "MORKOV contributors",
     "githubRepo": "glob707/MORKOV"
   },
   "scripts": {

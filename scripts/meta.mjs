@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 
-export const PLUGIN_FILE = "MARKVI.plugin.js";
+export const PLUGIN_FILE = "MORKOV.plugin.js";
 export const OUT_FILE = `dist/${PLUGIN_FILE}`;
 
 const pkg = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
@@ -12,14 +12,14 @@ export const REQUIRED_META = ["name", "author", "description", "version"];
 
 export function buildMetaHeader() {
   const meta = {
-    name: "MARKVI",
-    author: pkg.markvi.author,
+    name: "MORKOV",
+    author: pkg.morkov.author,
     description: "Раскладывает голоса участников звонка по стереопанораме",
     version,
   };
 
   // Without a GitHub repo there is nowhere to fetch updates from yet.
-  const repo = pkg.markvi.githubRepo;
+  const repo = pkg.morkov.githubRepo;
   if (repo) {
     meta.source = `https://github.com/${repo}`;
     meta.updateUrl = `https://github.com/${repo}/releases/latest/download/${PLUGIN_FILE}`;

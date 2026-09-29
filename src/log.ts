@@ -1,4 +1,4 @@
-const PREFIX = "[MARKVI]";
+const PREFIX = "[MORKOV]";
 
 export interface Logger {
   info(message: string, ...details: unknown[]): void;

@@ -3,7 +3,7 @@ import { defineConfig } from "eslint/config";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
-const noNetwork = "MARKVI makes no network requests (NFR-2).";
+const noNetwork = "MORKOV makes no network requests (NFR-2).";
 
 export default defineConfig(
   { ignores: ["dist/", "node_modules/", ".claude/"] },

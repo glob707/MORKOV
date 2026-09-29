@@ -14,9 +14,9 @@ describe("createLogger", () => {
     log.warn("careful");
     log.error("broken", 42);
 
-    expect(sink.log).toHaveBeenCalledWith("[MARKVI]", "started");
-    expect(sink.warn).toHaveBeenCalledWith("[MARKVI]", "careful");
-    expect(sink.error).toHaveBeenCalledWith("[MARKVI]", "broken", 42);
+    expect(sink.log).toHaveBeenCalledWith("[MORKOV]", "started");
+    expect(sink.warn).toHaveBeenCalledWith("[MORKOV]", "careful");
+    expect(sink.error).toHaveBeenCalledWith("[MORKOV]", "broken", 42);
   });
 
   it("drops debug messages while debug logs are off", () => {
@@ -38,6 +38,6 @@ describe("createLogger", () => {
     log.debug("shown");
 
     expect(sink.log).toHaveBeenCalledTimes(1);
-    expect(sink.log).toHaveBeenCalledWith("[MARKVI]", "[debug]", "shown");
+    expect(sink.log).toHaveBeenCalledWith("[MORKOV]", "[debug]", "shown");
   });
 });

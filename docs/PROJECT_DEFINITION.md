@@ -1,4 +1,4 @@
-# MARKVI — Project Definition
+# MORKOV — Project Definition
 
 Плагин BetterDiscord, который раскладывает голоса участников звонка по стереопанораме, чтобы в большой компании речь не сливалась в кашу.
 
@@ -68,7 +68,7 @@ Output: X слышен со стороны своего слота
 
 ### UC-6. Discord обновился, API сломался
 
-При старте (и при входе в канал) плагин проверяет наличие нужных внутренних API. Если чего-то нет, плагин выключается, возвращает центр, если это ещё возможно, и показывает уведомление «MARKVI: несовместимая версия Discord». Работать наполовину не пытается.
+При старте (и при входе в канал) плагин проверяет наличие нужных внутренних API. Если чего-то нет, плагин выключается, возвращает центр, если это ещё возможно, и показывает уведомление «MORKOV: несовместимая версия Discord». Работать наполовину не пытается.
 
 ### Edge cases
 | Ситуация | Поведение |
@@ -140,14 +140,14 @@ flowchart LR
     U[Пользователь в наушниках] -->|ПКМ / настройки| UI
 
     subgraph Discord desktop + BetterDiscord
-        subgraph MARKVI plugin
+        subgraph MORKOV plugin
             UI[UI: контекстное меню<br/>+ панель настроек]
             ST[(Настройки<br/>BdApi.Data)]
             AD[Discord-адаптер]
             CORE[Ядро: LayoutEngine<br/>чистый TS]
             AP[Applier:<br/>pan law, повторное применение]
             COMPAT[Проверка совместимости]
-            LOG[Логи в консоль<br/>MARKVI]
+            LOG[Логи в консоль<br/>MORKOV]
         end
         FLUX[Flux: SPEAKING,<br/>VoiceState] -->|кто говорит, кто в канале| AD
         VE[Нативный голосовой движок<br/>discord_voice]
@@ -206,7 +206,7 @@ stateDiagram-v2
 Персистентные данные — одна запись настроек. Состояние раскладки живёт только в памяти и после перезапуска не нужно.
 
 ```ts
-// BdApi.Data("MARKVI", "settings")
+// BdApi.Data("MORKOV", "settings")
 interface Settings {
   schemaVersion: 1;
   mode: "off" | "static" | "dynamic";
@@ -253,12 +253,12 @@ engine.handle(event: EngineEvent, nowMs: number): {
 |---|---|
 | local | macOS, Discord + BetterDiscord, собранный файл ссылкой или копией в `~/Library/Application Support/BetterDiscord/plugins/` |
 | CI | GitHub Actions |
-| «production» | GitHub Release с `MARKVI.plugin.js`, откуда BetterDiscord берёт обновления |
+| «production» | GitHub Release с `MORKOV.plugin.js`, откуда BetterDiscord берёт обновления |
 
 Test/stage-окружений нет: их роль выполняют тестовые созвоны с друзьями на локальной сборке.
 
 Стек:
-- TypeScript, esbuild → один `MARKVI.plugin.js` с мета-заголовком BetterDiscord (`@name`, `@version`, `@updateUrl`, ...)
+- TypeScript, esbuild → один `MORKOV.plugin.js` с мета-заголовком BetterDiscord (`@name`, `@version`, `@updateUrl`, ...)
 - vitest для тестов, ESLint
 - npm, Node LTS
 - Никаких runtime-зависимостей
@@ -300,7 +300,7 @@ XSS, CSRF, SSRF, инъекции, аутентификация, rate limiting: 
 
 ## 16. Observability
 
-- Логи в консоль DevTools Discord с префиксом `[MARKVI]`: всегда — старт, стоп, результат Compat, ошибки; при `debugLogs` — каждое событие ядра, назначение и освобождение слота, вызовы `setLocalPan`, задержка от события до применения.
+- Логи в консоль DevTools Discord с префиксом `[MORKOV]`: всегда — старт, стоп, результат Compat, ошибки; при `debugLogs` — каждое событие ядра, назначение и освобождение слота, вызовы `setLocalPan`, задержка от события до применения.
 - Ответы на вопросы:
   - *Что произошло?* Событие и решение ядра в логе.
   - *Почему упало?* Compat пишет, какого API не хватает; ошибки ловятся на границе оболочки и переводят плагин в безопасное состояние.
@@ -311,8 +311,8 @@ XSS, CSRF, SSRF, инъекции, аутентификация, rate limiting: 
 
 GitHub Actions:
 - **На каждый push и PR:** `npm ci` → проверка типов → lint → unit → сборка → build check.
-- **На тег `v*`:** всё то же + GitHub Release с `MARKVI.plugin.js`. Версия в мета-заголовке берётся из тега.
-- `@updateUrl` указывает на `https://github.com/glob707/MORKOV/releases/latest/download/MARKVI.plugin.js`.
+- **На тег `v*`:** всё то же + GitHub Release с `MORKOV.plugin.js`. Версия в мета-заголовке берётся из тега.
+- `@updateUrl` указывает на `https://github.com/glob707/MORKOV/releases/latest/download/MORKOV.plugin.js`.
 
 ## 18. Risks
 
@@ -394,7 +394,7 @@ GitHub Actions:
 - **Цель:** пустой плагин собирается, ставится в BetterDiscord, пишет в консоль при старте и остановке, CI зелёный.
 - **Компоненты:** `package.json`, `tsconfig`, esbuild-скрипт с мета-заголовком, `src/index.ts` (start/stop), vitest, ESLint, `.github/workflows/ci.yml`, README (установка + предупреждение про ToS), LICENSE (MIT).
 - **Тесты:** один тестовый юнит-тест как дымовая проверка каркаса; build check.
-- **Готово, когда:** `npm run build` → файл в папке plugins → включение в BetterDiscord → `[MARKVI] started` в консоли; CI проходит.
+- **Готово, когда:** `npm run build` → файл в папке plugins → включение в BetterDiscord → `[MORKOV] started` в консоли; CI проходит.
 
 ### Slice 1. Ручная панорама одного человека (технический spike в коде)
 - **Цель:** доказать механизм. ПКМ по участнику → «Панорама: слева / центр / справа» → слышно.
@@ -447,7 +447,7 @@ GitHub Actions:
 Для каждой фичи и слайса:
 - Функция работает в живом Discord на macOS, проверена руками.
 - Логика ядра покрыта юнит-тестами, включая граничные случаи из раздела 4.
-- Отказ безопасный: ошибка в оболочке ловится, звук возвращается в центр, в консоли понятная запись `[MARKVI]`.
+- Отказ безопасный: ошибка в оболочке ловится, звук возвращается в центр, в консоли понятная запись `[MORKOV]`.
 - Для нового поведения есть подробный лог (`debugLogs`).
 - В коде нет сетевых вызовов и runtime-зависимостей (build check проходит).
 - CI зелёный: типы, lint, тесты, сборка.

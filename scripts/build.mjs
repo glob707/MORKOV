@@ -10,7 +10,7 @@ await build({
   target: "es2022",
   charset: "utf8",
   legalComments: "none",
-  define: { __MARKVI_VERSION__: JSON.stringify(version) },
+  define: { __MORKOV_VERSION__: JSON.stringify(version) },
   // The meta header must be the very first thing in the file.
   banner: { js: buildMetaHeader() },
   // esbuild exposes `export default` as module.exports.default;
